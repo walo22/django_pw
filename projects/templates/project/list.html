@@ -1,0 +1,85 @@
+{% extends " base.html" %}
+{% load i18n %}
+{% load humanize %}
+
+{%block content %}
+
+
+
+    <div class="d-flex">
+        <h3 closs = "me-auto"> {% trans "My Projects" %} </h3>
+        <div>
+            <a href = "{% url 'Project_create' %}" class="btn btn-outline-success">
+                <i class="bi bi-plus-1g "></i> {% trans 'New Project' %}
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="row my-5">
+        {% for project in object_list %} 
+            <div class="col-md-4"... >
+    {% empty %}
+         <div class="col-md-12">
+            <div class="h-100 p-5 bg-white border rounded-3 text-center">
+                <p>{% trans 'There are no projects to show' %} </p>
+                
+                <p>
+                   <i class="bi bi-emoji-frown fs-1"></i>
+                </p>
+                <a href="(% url 'Project_create' %}" class="btn btn-success">
+                    <i class="bi bi-plus-lg "></i> {% trans 'New Project' %}
+                </a>
+            </div>
+         </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+<div class="row my-5">
+    {% for project in object_list %} 
+        <div class="col-md-4"... >
+            <div class = "card mb-3">
+                <div class ="card-body" >
+                    <p>
+                        <span class = "badge rounded-pill bg-dark">
+                             {{ project.get_status_display}}
+                        </span>
+                    <h3 class = "card-title fs-6">{{Project.title}} </h3>
+                    <p class= "card-text text-muted small "> {{project.description}}</p>
+                    <dif class= "d-flex">
+                        <span class = "me-auto text-muted small">
+                            <i class= "bi bi-clock"></i>
+                            <time datetime="{{project.created_ad}}">
+                                {{project.created_ad|naturaltime}}
+                            </time>
+                        </span>
+                        <a href = "{% url 'Project_update' project.id %}" class= "btn btn-sm btn-outline-dark nx-1">
+                            {%trans 'Edit' %}
+                        </a>
+                        <a href = "{% url 'Project_delete' project.id %}" class= "btn btn-sm btn-outline-dark-danger">
+                            <i class= "bi bi-trash"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty%}
+        <div class="col-md-12">
+            <div class="h-100 p-5 bg-white border rounded-3 text-center">
+                <p>{% trans 'There are no projects to show' %} </p>
+                <p>
+                    <i class="bi bi-emoji-frown fs-1"></i>
+                </p>
+                <a href="(% url 'Project_create' %}" class="btn btn-success">
+                    <i class="bi bi-plus-lg "></i> {% trans 'New Project' %}
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

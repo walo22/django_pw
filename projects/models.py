@@ -31,8 +31,8 @@ class Project(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT) #تحديد العلاقات بين التصنيفات مع المشروع 
     user = models.ForeignKey(    #تحديد العلاقات بين النمودج والمشروع 
         AUTH_USER_MODEL,
-        on_delete=models.CASCADE   #لحدف مشاريع المتخدم عند الحدف
-       
+        on_delete=models.CASCADE,   #لحدف مشاريع المتخدم عند الحدف
+        null=True
      )
 
 #تحويل العنوان لسلسه نصيه 
