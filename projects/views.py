@@ -28,52 +28,52 @@ class ProjectCreateView(CreateView) : # يرث من قريت فيو
 
 
 
-#class ProjectUpdateView(UpdateView) :
-   # model = models.Project
-   # form_class = forms.ProjectUpdateForm
-   # template_name = 'Project/Update.html'
-   # success_url = reverse_lazy('Project_list')
+class ProjectUpdateView(UpdateView) :
+   model = models.Project
+   form_class = forms.ProjectUpdateForm
+   template_name = 'project/update.html'
+   success_url = reverse_lazy('Project_list')
     
 
-    #def get_succrss_url(self):           #ايدي المشروع args  
-       # return reverse('Project_update' , args=[self.object.id])
+   def get_succrss_url(self):           #ايدي المشروع args  
+      return reverse('Project_update' , args=[self.object.id])
 
 
-#class ProjectDeleteView(DeleteView):
-   # model = models.Project
-   # template_name = 'project/delete.html'
-    #success_url=  reverse_lazy('Project_list')
+class ProjectDeleteView(DeleteView):
+   model = models.Project
+   template_name = 'project/delete.html'
+   success_url=  reverse_lazy('Project_list')
 
 
-#class TaskCreateView(CreateView): #انشاء المهمه 
-   # model = models.Task
-    #fields =['project', 'description']  #الحقول ووصف
-    #http_method_names =['post']  # 
+class TaskCreateView(CreateView): #انشاء المهمه 
+   model = models.Task
+   fields =['project', 'description']  #الحقول ووصف
+   http_method_names = ['post']  # 
 
 
-    #def get_success_url(self):
-        #return reverse('Project_update' , args=[self.object.project.id ])
-    
-
-
-
-
-#class TaskUpdateView(UpdateView):
-   # model = models.Task
-    #fields =['is_completed']
-   # http_method_names =['post']
-
-
-   # def get_success_url(self):
-       # return reverse('Project_update' , args=[self.object.project.id ])
+   def get_success_url(self):
+      return reverse('Project_update' , args=[self.object.project.id ])
     
 
 
 
-#class TaskDeleteView(DeleteView):
-   # model = models.Task
+
+class TaskUpdateView(UpdateView):
+   model = models.Task
+   fields = ['is_completed']
+   http_method_names = ['post']
+
+
+   def get_success_url(self):
+      return reverse('Project_update' , args=[self.object.project.id ])
+    
+
+
+
+class TaskDeleteView(DeleteView):
+   model = models.Task
   
 
-   # def get_success_url(self):
-      #  return reverse('Project_update' , args=[self.object.project.id ])
+   def get_success_url(self):
+      return reverse('Project_update' , args=[self.object.project.id ])
 
